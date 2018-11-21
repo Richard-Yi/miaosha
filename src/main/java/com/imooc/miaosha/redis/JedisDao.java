@@ -5,7 +5,8 @@ import java.util.Map;
 
 /**
  * @author Richard_yyf
- * @version 1.0 2018/10/18
+ * @Date 2018/11/21
+ * @Description
  */
 public interface JedisDao {
 
@@ -16,7 +17,7 @@ public interface JedisDao {
      * @param key    键
      * @param second 时间(单位：s)
      * @return 处理结果 成功 1， 失败 0
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     long expire(String key, int second);
 
@@ -28,7 +29,7 @@ public interface JedisDao {
      * 当 key 不存在时，返回 -2 。
      * 当 key 存在但没有设置剩余生存时间时，返回 -1 。
      * 否则，以秒为单位，返回 key 的剩余生存时间。
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     long ttl(String key);
 
@@ -37,7 +38,7 @@ public interface JedisDao {
      *
      * @param key 键
      * @return 值
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     String get(String key);
     byte[] get(byte[] key);
@@ -54,7 +55,7 @@ public interface JedisDao {
      * 在 Redis 2.6.12 版本以前， SET 命令总是返回 OK 。
      * 从 Redis 2.6.12 版本开始， SET 在设置操作成功完成时，才返回 OK
      * 如果设置了 NX 或者 XX ，但因为条件没达到而造成设置操作未执行，那么命令返回空批量回复（NULL Bulk Reply）
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     String set(String key, String value);
     String set(byte[] key, byte[] value);
@@ -68,7 +69,7 @@ public interface JedisDao {
      *
      * @param key 键
      * @return 处理后的value
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     long incr(String key);
 
@@ -77,7 +78,7 @@ public interface JedisDao {
      *
      * @param key 键
      * @return 被删除 key 的数量
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     long del(String... key);
     long del(byte[]... key);
@@ -88,7 +89,7 @@ public interface JedisDao {
      * @param hkey hashKey
      * @param key  key
      * @return 给定域的值。当给定域不存在或是给定 key 不存在时，返回 nil
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     String hget(String hkey, String key);
     byte[] hget(byte[] hkey, byte[] key);
@@ -105,7 +106,7 @@ public interface JedisDao {
      * @return 处理结果
      * 如果 field 是哈希表中的一个新建域，并且值设置成功，返回 1 。
      * 如果哈希表中域 field 已经存在且旧值已被新值覆盖，返回 0 。
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     long hset(String hkey, String key, String value);
     long hset(byte[] hkey, byte[] key, byte[] value);
@@ -116,7 +117,7 @@ public interface JedisDao {
      * @param hkey hkey
      * @param key  key
      * @return 被成功移除的域的数量，不包括被忽略的域
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     long hdel(String hkey, String... key);
     long hdel(byte[] hkey, byte[]... key);
@@ -126,7 +127,7 @@ public interface JedisDao {
      *
      * @param hkey key
      * @return 以列表形式返回哈希表的域和域的值。若 key 不存在，返回空列表。
-     * @author chenlw  v1.0   2017/11/28
+     * @author Richard_yyf 2018/11/21
      */
     Map<String, String> hgetall(String hkey);
     Map<byte[], byte[]> hgetall(byte[] hkey);
@@ -138,7 +139,7 @@ public interface JedisDao {
      * @param key    key
      * @param values values
      * @return 执行 LPUSH 命令后，列表的长度
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     long lpush(String key, String... values);
 
@@ -148,7 +149,7 @@ public interface JedisDao {
      *
      * @param key key
      * @return 列表的头元素。当 key 不存在时，返回 nil 。
-     * @author chenlw  v1.0   2017/11/22
+     * @author Richard_yyf 2018/11/21
      */
     String lpop(String key);
 
@@ -162,7 +163,11 @@ public interface JedisDao {
      * @param start 开始下标
      * @param end   结束下标
      * @return 一个列表，包含指定区间内的元素。
-     * @author chenlw  v1.0   2017/11/23
+     * @author Richard_yyf 2018/11/21
      */
     List<String> lrange(String key, long start, long end);
+
+    String flushall();
+
+    String getSet(String key, String value);
 }
