@@ -1,7 +1,7 @@
 package com.imooc.miaosha.controller;
 
 import com.imooc.miaosha.domain.User;
-import com.imooc.miaosha.redis.RedisService;
+import com.imooc.miaosha.redis.JedisService;
 import com.imooc.miaosha.result.Result;
 import com.imooc.miaosha.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,7 +23,7 @@ public class SampleController {
     private UserService userService;
 
     @Autowired
-    private RedisService redisService;
+    private JedisService jedisService;
 
     /**
      * 测试 db
@@ -55,7 +55,7 @@ public class SampleController {
     @RequestMapping("/redis/get")
     @ResponseBody
     public Result<Boolean> redisGet() {
-        redisService.get("", String.class);
+
         return Result.success(true);
     }
 }
